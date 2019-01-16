@@ -8,7 +8,14 @@ public class Pre_seg {
     private static final String PREFIX = "pre";//左前缀标识
     private static final String SELF = "self";//完整标识
 
-    public static String conversion(String s){
+    public static String deSpeChar(String s){
+        String result;
+        String regex = "[^\\dA-Za-z\\u4e00-\\u9fa5]";
+        result = s.replaceAll(regex, "");
+        return result;
+    }
+
+    public static String numConversion(String s){
         char[] list = s.toCharArray();
 
         for (int i = 0; i < list.length; i ++){
@@ -63,8 +70,8 @@ public class Pre_seg {
     }
 
     public static void main(String[] args){
-        String s = "你好12390hello";
-        List<String> list = segmentation(conversion(s));
+        String s = "你好*3(90,_hello$end结束:";
+        List<String> list = segmentation(numConversion(deSpeChar(s)));
 
         for (String item : list){
             System.out.println(item);
